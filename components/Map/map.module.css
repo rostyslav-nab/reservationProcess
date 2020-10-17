@@ -1,0 +1,22 @@
+.AutocompletePlace {
+    position: relative;
+}
+
+.AutocompletePlaceResults {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #00000011;
+    display: block;
+}
+
+.AutocompletePlaceItems {
+    list-style: none;
+    border: 1px solid #00000011;
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.AutocompletePlaceItems:hover {
+    background-color: #0000FF11;
+}

@@ -1,0 +1,2 @@
+export const SET_DATE = 'NEXT/CHECKIN/SET_DATE'
+export const SET_PLACE = 'NEXT/CHECKIN/SET_PLACE'
