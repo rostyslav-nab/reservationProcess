@@ -15,6 +15,7 @@ export default function Index() {
                 <meta name="description" content="3 steps reservation process"/>
                 <meta name="keywords" content="reservation, next, test work" />
                 <meta charSet="utf-8"/>
+                <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
                 <title>Welcome</title>
             </Head>
             <CssBaseline/>

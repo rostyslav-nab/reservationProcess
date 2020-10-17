@@ -1,6 +1,6 @@
 import Router from "next/router"
 import Button from "@material-ui/core/Button"
-import Map from "../../components/Map/Map"
+import SelectPlace from "../../components/SelectPlace/SelectPlace"
 import React, {useState} from "react"
 import Grid from "@material-ui/core/Grid"
 import CardContent from "@material-ui/core/CardContent";
@@ -24,7 +24,7 @@ export default function Index() {
         <div>
             <Card variant="outlined" className={classes.placesPage}>
                 <CardContent className={classes.map} >
-                    <Map onSelect={handleSelect}/>
+                    <SelectPlace onSelect={handleSelect}/>
                     {!place && <div>No place selected</div>}
                 </CardContent>
                 <CardActions className={classes.nextButton}>
