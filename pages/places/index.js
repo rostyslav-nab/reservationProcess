@@ -2,16 +2,15 @@ import Router from "next/router"
 import Button from "@material-ui/core/Button"
 import SelectPlace from "../../components/SelectPlace/SelectPlace"
 import React, {useState} from "react"
-import Grid from "@material-ui/core/Grid"
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent"
+import CardActions from "@material-ui/core/CardActions"
+import Card from "@material-ui/core/Card"
 import classes from './places.module.css'
-import {useDispatch} from "react-redux";
-import {setPlaceAC} from "../../redux/actions/placeAction";
+import {useDispatch} from "react-redux"
+import {setPlaceAC} from "../../redux/actions/placeAction"
 
 
-export default function Index() {
+const Index = () => {
     const [place, setPlace] = useState(null)
     const dispatch = useDispatch()
 
@@ -21,16 +20,19 @@ export default function Index() {
         dispatch(setPlaceAC(place))
     }
     return (
-        <div>
-            <Card variant="outlined" className={classes.placesPage}>
-                <CardContent className={classes.map} >
+        <div className={classes.placesPage}>
+            <h1 style={{color: 'white', textAlign: 'center'}}>Select a place to book</h1>
+            <Card variant="outlined">
+                <CardContent>
                     <SelectPlace onSelect={handleSelect}/>
-                    {!place && <div>No place selected</div>}
+                    {!place && <div style={{marginTop: '10px'}}>No place selected</div>}
                 </CardContent>
-                <CardActions className={classes.nextButton}>
+                <CardActions>
                     <Button variant="contained" color="secondary" onClick={() => Router.push('/summary')}>Finish</Button>
                 </CardActions>
             </Card>
         </div>
     )
 }
+
+export default Index

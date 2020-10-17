@@ -2,10 +2,9 @@ import Head from 'next/head'
 import Router from "next/router"
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Button from "@material-ui/core/Button"
-import React from "react";
+import React from "react"
 
-
-export default function Index() {
+const Index = () => {
 
     return (
         <div>
@@ -19,7 +18,10 @@ export default function Index() {
                 <title>Welcome</title>
             </Head>
             <CssBaseline/>
-            <Button variant="contained" size="large" color="secondary" onClick={() => Router.push('/checkin')}>Start</Button>
+            <h1 style={{color: 'white', textAlign: 'center', margin: '100px'}}>Hi, Welcome to our website, take 3 easy steps to book</h1>
+            <Button style={{margin: '0 auto', display: 'block'}} variant="contained" size="large" color="secondary" onClick={() => Router.push('/checkin')}>Start</Button>
         </div>
     )
 }
+
+export default Index

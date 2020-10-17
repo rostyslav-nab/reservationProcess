@@ -1,25 +1,23 @@
-import Router from "next/router"
-import Button from "@material-ui/core/Button"
 import Head from "next/head"
 import {DateTimePickerComponent} from "../../components/DateTimePicker/DateTimePicker"
 import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
 import CardContent from "@material-ui/core/CardContent"
+import classes from './checkIn.module.css'
 
-export default function Index() {
+const Index = () => {
     return (
-        <>
+        <div className={classes.checkInPage}>
             <Head>
-                <title>Pick thr Time</title>
+                <title>Pick the Time</title>
             </Head>
-            <h1>CheckIN</h1>
+            <h1>Enter CheckIn and CheckOut</h1>
             <Card variant="outlined">
                 <CardContent>
                     <DateTimePickerComponent/>
                 </CardContent>
             </Card>
-
-
-        </>
+        </div>
     )
 }
+
+export default Index

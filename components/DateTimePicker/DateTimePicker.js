@@ -1,54 +1,65 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {Formik, Form, Field} from 'formik'
 import {Button, LinearProgress} from '@material-ui/core'
 import {DateTimePicker} from 'formik-material-ui-pickers'
 import {MuiPickersUtilsProvider} from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import Router from "next/router"
-import {useDispatch} from "react-redux";
-import {setDateTime} from "../../redux/actions/checkinAction";
+import {useDispatch} from "react-redux"
+import {setDateTime} from "../../redux/actions/checkinAction"
+import * as Yup from 'yup'
 
 
-export const DateTimePickerComponent = (props) => {
+
+export const DateTimePickerComponent = () => {
 
     const dispatch = useDispatch()
-    const datePickerFormValidate = (values) => {
-        console.log('Validation...')
-    }
+
+    //Adding 2 hours to the current date
+    const newDate = new Date();
+    newDate.setMilliseconds(2 * 60 * 60 * 1000)
+
+    const validationSchema = Yup.object({
+        checkIn: Yup.date().min(new Date(), 'CheckIn should be bigger then current date')
+            .max(newDate, 'Checkin can be only in the next 2 hours').required('Required'),
+        checkOut: Yup.date().min(Yup.ref('checkIn'), 'CheckOut date should be bigger then CheckIn')
+            .required('Required')
+    })
 
     const submit = (values, { setSubmitting}) => {
-        const formatCheckIn = values.checkIn.toString()
-        const formatCheckOut = values.checkOut.toString()
         dispatch(setDateTime({
-            checkIn: formatCheckIn,
-            checkOut: formatCheckOut
+            checkIn: values.checkIn.toString(),
+            checkOut: values.checkOut.toString()
         }))
         setSubmitting(false)
     }
 
     return (
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} >
             <Formik
                 initialValues={{
                     checkIn: new Date(),
                     checkOut: new Date(),
                 }}
-                validate={datePickerFormValidate}
+                validationSchema={validationSchema}
                 onSubmit={submit}
+
             >
                 {({submitForm, isSubmitting}) => (
-                    <Form>
+                    <Form style={{minHeight: '200px'}}>
                         <Field
                             component={DateTimePicker}
                             name="checkIn"
                             label="CheckIn"
                             ampm={false}
+                            style={{display: 'block', margin: '20px'}}
                         />
                         <Field
                             component={DateTimePicker}
                             name="checkOut"
                             label="CheckOut"
                             ampm={false}
+                            style={{display: 'block', margin: '20px'}}
                         />
                         {isSubmitting && <LinearProgress/>}
                         <br/>

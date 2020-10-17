@@ -1,0 +1,9 @@
+.map {
+    display: flex;
+    justify-content: center;
+}
+
+.summary h2{
+    color: white;
+    text-align: center;
+}
