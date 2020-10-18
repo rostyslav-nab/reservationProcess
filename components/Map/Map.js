@@ -1,17 +1,14 @@
 import React, {useState} from 'react'
 import ReactMapGL, {Marker} from 'react-map-gl'
 import {useSelector} from "react-redux"
-
 const Map = () => {
     const latitude = useSelector(state => state.place.place.geometry.coordinates[1])
     const longitude = useSelector(state => state.place.place.geometry.coordinates[0])
-    console.log(latitude)
-    console.log(longitude)
     const [viewport, setViewport] = useState({
         width: '900px',
         height: '500px',
-        latitude: latitude,
-        longitude: longitude,
+        latitude,
+        longitude,
         zoom: 18
     })
 
@@ -23,7 +20,8 @@ const Map = () => {
             {...viewport}
         >
             <Marker latitude={latitude} longitude={longitude} offsetLeft={-20} offsetTop={-10}>
-                <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-32.png" alt="marker"/>
+                <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-32.png"
+                     alt="marker"/>
             </Marker>
         </ReactMapGL>
     )

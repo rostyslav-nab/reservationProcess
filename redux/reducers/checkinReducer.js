@@ -1,4 +1,4 @@
-import {SET_DATE} from "../types";
+import {SET_DATE} from "../types"
 
 const initialState = {
     date: {}

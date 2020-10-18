@@ -3,6 +3,11 @@
     justify-content: center;
 }
 
+.summary button {
+    display: block;
+    margin: 20px auto;
+}
+
 .summary h2{
     color: white;
     text-align: center;

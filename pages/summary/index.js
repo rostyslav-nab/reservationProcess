@@ -2,6 +2,8 @@ import React from "react"
 import {useSelector} from "react-redux"
 import dynamic from 'next/dynamic'
 import classes from './summary.module.css'
+import Button from "@material-ui/core/Button"
+import Router from "next/router"
 
 const DynamicComponentWithNoSSR = dynamic(() => import('../../components/Map/Map'), {
     ssr: false
@@ -10,7 +12,7 @@ const DynamicComponentWithNoSSR = dynamic(() => import('../../components/Map/Map
 const Index = () => {
     const date = useSelector(state => state.checkIn.date)
     const place = useSelector(state => state.place.place)
-    console.log(date)
+
     return(
         <div className={classes.summary}>
             <h2>CheckIn Time: {date.checkIn}</h2>
@@ -20,7 +22,9 @@ const Index = () => {
             <div className={classes.map}>
                 <DynamicComponentWithNoSSR />
             </div>
-
+            <Button variant="contained" color="secondary" onClick={() => Router.push('/')}>
+                Go to Start Page
+            </Button>
        </div>
     )
 }
