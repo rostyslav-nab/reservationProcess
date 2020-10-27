@@ -1,9 +1,6 @@
-import Router from "next/router"
-import Button from "@material-ui/core/Button"
 import SelectPlace from "../../components/SelectPlace/SelectPlace"
 import React, {useState} from "react"
 import CardContent from "@material-ui/core/CardContent"
-import CardActions from "@material-ui/core/CardActions"
 import Card from "@material-ui/core/Card"
 import classes from './places.module.css'
 import {useDispatch} from "react-redux"
@@ -27,9 +24,6 @@ const Index = () => {
                     <SelectPlace onSelect={handleSelect}/>
                     {!place && <div style={{marginTop: '10px'}}>No place selected</div>}
                 </CardContent>
-                <CardActions>
-                    <Button variant="contained" color="secondary" onClick={() => Router.push('/summary')}>Finish</Button>
-                </CardActions>
             </Card>
         </div>
     )

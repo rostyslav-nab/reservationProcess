@@ -9,6 +9,13 @@ import {useDispatch} from "react-redux"
 import {setDateTime} from "../../redux/actions/checkinAction"
 import * as Yup from 'yup'
 
+const newDate = new Date()
+const validationSchema = Yup.object({
+    checkIn: Yup.date().min(new Date(), 'CheckIn should be bigger then current date')
+        .max(newDate, 'Checkin can be only in the next 2 hours').required('Required'),
+    checkOut: Yup.date().min(Yup.ref('checkIn'), 'CheckOut date should be bigger then CheckIn')
+        .required('Required')
+})
 
 
 export const DateTimePickerComponent = () => {
@@ -16,15 +23,7 @@ export const DateTimePickerComponent = () => {
     const dispatch = useDispatch()
 
     //Adding 2 hours to the current date
-    const newDate = new Date();
     newDate.setMilliseconds(2 * 60 * 60 * 1000)
-
-    const validationSchema = Yup.object({
-        checkIn: Yup.date().min(new Date(), 'CheckIn should be bigger then current date')
-            .max(newDate, 'Checkin can be only in the next 2 hours').required('Required'),
-        checkOut: Yup.date().min(Yup.ref('checkIn'), 'CheckOut date should be bigger then CheckIn')
-            .required('Required')
-    })
 
     const submit = (values, { setSubmitting}) => {
         dispatch(setDateTime({
@@ -43,7 +42,6 @@ export const DateTimePickerComponent = () => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={submit}
-
             >
                 {({submitForm, isSubmitting}) => (
                     <Form style={{minHeight: '200px'}}>

@@ -5,6 +5,8 @@ import Input from "@material-ui/core/Input"
 import ListItem from "@material-ui/core/ListItem"
 import List from "@material-ui/core/List"
 import ListItemText from "@material-ui/core/ListItemText"
+import Router from "next/router";
+import Button from "@material-ui/core/Button";
 
 const REACT_APP_MAPBOX_API_KEY = 'pk.eyJ1IjoiYmRlcHBvIiwiYSI6ImNrZ2N0aDJvMTAxMDYycnM0bzRmcndnbXAifQ.escrd3XYhRd83AfE2tnA6Q'
 export default class AutocompletePlace extends React.Component {
@@ -81,6 +83,7 @@ export default class AutocompletePlace extends React.Component {
                         </ListItem>
                     ))}
                     {this.state.isLoading && <li className={classes.AutocompletePlaceItems}>Loading...</li>}
+                    <Button disabled={!this.state.search} variant="contained" color="secondary" onClick={() => Router.push('/summary')}>Finish</Button>
                 </List>
             </div>
         )
